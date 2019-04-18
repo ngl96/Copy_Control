@@ -1,11 +1,3 @@
-/*
-  Nathanael Leyton
-  Recitation 06
-  CS2124
- 
-  Focus: Dynamic arrays and copy control
- */
-
 #include <string>
 #include <iostream>
 using namespace std;
@@ -46,7 +38,6 @@ class Entry {
 };
 
 class Directory {
-    // Overload output operator
     friend ostream& operator<<(ostream& os, const Directory& rhs){
         for (size_t i = 0; i < rhs.size; i++){
             os << *rhs.entries[i] << endl;
@@ -73,7 +64,6 @@ class Directory {
             }
         }
         Directory& operator=(Directory& rhs){
-            // Compare addresses to make sure there not the same.
             if (this != &rhs){
                 for (size_t i = 0; i < size; i++){
                     delete entries[i];
@@ -114,7 +104,6 @@ class Directory {
 void doNothing(Directory dir) { cout << dir << endl; }
 int main() {
 
-    // Note that the Postion objects are NOT on the heap.
     Position boss("Boss", 3141.59);
     Position pointyHair("Pointy Hair", 271.83);
     Position techie("Techie", 14142.13);
@@ -125,7 +114,7 @@ int main() {
     d.add("Marilyn", 123, 4567, boss);
     cout << d << endl;
 
-    Directory d2 = d;	// What function is being used??
+    Directory d2 = d;
     d2.add("Gallagher", 111, 2222, techie);
     d2.add("Carmack", 314, 1592, techie);
     cout << d << endl;
@@ -137,7 +126,6 @@ int main() {
     Directory d3;
     d3 = d2;
 
-    // Should display 1592
     cout << d2["Carmack"] << endl;
 
 }
